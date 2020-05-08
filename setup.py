@@ -18,9 +18,6 @@ import sys
 from setuptools import setup
 
 
-PY3 = sys.version_info[0] == 3
-WINDOWS = sys.platform == 'win32' or sys.platform == 'cygwin'
-
 description = ("Thrift SASL Python module that implements SASL transports for "
                "Thrift (`TSaslClientTransport`).")
 
@@ -36,8 +33,8 @@ setup(
         'thrift==0.9.3; python_version < 3.0',
         # Installing sasl on Windows is rather painful, so use the pure python
         # implementation on Windows
-        'pure-sasl>=0.3.0; sys_platform == "win32"'
-        'sasl>=0.2.1; sys_platform != "win32"',
+        'pure-sasl>=0.3.0; sys_platform == "win32" or sys_platform == "cygwin"'
+        'sasl>=0.2.1; sys_platform != "win32" and sys_platform != "cygwin"',
         'six>=1.13.0'
     ],
     packages=['thrift_sasl'],
