@@ -36,7 +36,8 @@ setup(
         'thrift==0.9.3; python_version < 3.0',
         # Installing sasl on Windows is rather painful, so use the pure python
         # implementation on Windows
-        'pure-sasl>=0.3.0' if WINDOWS else 'sasl>=0.2.1',
+        'pure-sasl>=0.3.0; sys_platform == "win32"'
+        'sasl>=0.2.1; sys_platform != "win32"',
         'six>=1.13.0'
     ],
     packages=['thrift_sasl'],
